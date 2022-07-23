@@ -13,7 +13,17 @@ module.exports = {
     await Promise.all([queryInterface.addColumn("Products","tersedia",{
       type: Sequelize.BOOLEAN,
     })
-    ])
+    ],
+    [queryInterface.addColumn("Products","createdAt",{
+        allowNull: false,
+        type: Sequelize.DATE
+    })
+    ]
+    [queryInterface.addColumn("Products","updatedAt",{
+      allowNull: false,
+      type: Sequelize.DATE
+  })
+  ])
   },
 
   async down (queryInterface, Sequelize) {
@@ -24,6 +34,6 @@ module.exports = {
      * await queryInterface.dropTable('users');
      */
     await Promise.all([
-      queryInterface.removeColumn("Product","tersedia")]);
+      queryInterface.removeColumn("Products","tersedia")]);
   }
 };

@@ -1,10 +1,10 @@
-const express = require('express')
+const express = require('express');
+// const ProductRouter = require('./src/database/product/product.route');
+const userRouter = require('./src/user/user.route')
+const ProductRouter = require('./src/product/product.route')
 const app = express()
-const port = 8000
+const port =  8001
 
-// !important! 
-// you need to install the following libraries |express|[dotenv > if required]
-// or run this command >> npm i express dotenv 
 
 app.get('/' , (req , res)=>{
 
@@ -12,5 +12,6 @@ app.get('/' , (req , res)=>{
 
 })
 
-
+app.use(userRouter);
+app.use(ProductRouter);
 app.listen(port , ()=> console.log('> Server is up and running on port : ' + port))

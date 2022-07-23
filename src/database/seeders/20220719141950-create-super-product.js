@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -20,15 +20,23 @@ module.exports = {
         stok: 5,
 
         tersedia: true,
+
+        createdAt: new Date(),
+      
+        updatedAt: new Date(),
       },
       {
-        product_name: "Lemon tea",
+        product_name: "Vitamin C2000",
 
         deskripsi: "Meningkatkan..",
 
         stok: 2,
 
         tersedia: true,
+
+        createdAt: new Date(),
+      
+        updatedAt: new Date(),
       },
       {
         product_name: "Frisian Flag",
@@ -38,6 +46,10 @@ module.exports = {
         stok: 0,
 
         tersedia: false,
+
+        createdAt: new Date(),
+      
+        updatedAt: new Date(),
       },
       {
         product_name: "Milo",
@@ -47,6 +59,10 @@ module.exports = {
         stok: 11,
 
         tersedia: true,
+
+        createdAt: new Date(),
+      
+        updatedAt: new Date(),
       },
       {
         product_name: "Pulpy",
@@ -56,6 +72,10 @@ module.exports = {
         stok: 0,
 
         tersedia: false,
+
+        createdAt: new Date(),
+      
+        updatedAt: new Date(),
       },
       {
         product_name: "Torabika Cappuccino",
@@ -65,6 +85,10 @@ module.exports = {
         stok: 13,
 
         tersedia: true,
+
+        createdAt: new Date(),
+      
+        updatedAt: new Date(),
       },
     ]);
   },
