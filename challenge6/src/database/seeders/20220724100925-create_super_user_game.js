@@ -23,7 +23,30 @@ module.exports = {
       
       updatedAt: new Date(),
       },
+      {
       
+        username: "Player 2",
+        
+        password: "Password2",
+        
+        createdAt: new Date(),
+      
+        updatedAt: new Date(),
+        },
+      
+        {
+      
+          username: "Player 3",
+          
+          password: "Password3",
+
+          createdAt: new Date(),
+      
+          updatedAt: new Date(),
+          
+          },
+        
+
       ]);
   },
 

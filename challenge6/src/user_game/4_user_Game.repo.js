@@ -29,14 +29,14 @@
     };
 
     // cari User_game berdasar User_game_namenya
-    const getUser_gameByUser_game_name = async (username) => {
-      return await username.findOne({
+    const getUser_ByUser_game_name = async (username) => {
+      return await User_game.findOne({
+        attributes: ['username'],
         where: { username: username },
-      });
-    };
+      })};
 
     const cekDataId = async (id) => {
-      return await username.findAll({
+      return await User_game.findAll({
         where: {
           id: id,
         },
@@ -61,15 +61,8 @@
       );
     };
 
-    // // delete User_game dari database
-    // const deleteUser_game = async (User_gameId) => {
-    //   return await User_game.destroy({
-    //     where: { id: User_gameId },
-    //   });
-    // };
-
     const deleteRepoUser_game = async (id) => {
-      return await username.destroy({
+      return await User_game.destroy({
         where: {
           id: id
         },
@@ -80,7 +73,7 @@
       getAllUser_games,
       getuser_gameByQuery,
       createNewUser_game,
-      getUser_gameByUser_game_name,
+      getUser_ByUser_game_name,
       updateUser_game,
       deleteRepoUser_game,
       cekDataId,
