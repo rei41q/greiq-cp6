@@ -1,6 +1,6 @@
     const express = require("express");
     const ProductRouter = express.Router();
-    const ProductControler = require("./product.controler");
+    const ProductControler = require("./product.controller");
     // API to get all Products
 
     ProductRouter.use(express.json());
