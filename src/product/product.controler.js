@@ -12,13 +12,14 @@ const getAllProduct = async (req, res) => {
 
 const createNewProduct = async(req, res) =>{
     const { product_name, deskripsi, stok, tersedia } = req.body;
-    const newProduct = await product_service.createNewProduct(
+    const newProduct = await product_service.createNewProduct({
       product_name,
       deskripsi,
       stok,
       tersedia
+    }
     );
-    return res.status(200).json("Berhasil menambahkan data");
+    return res.status(200).json(newProduct);
 }
 
 const updateProduct = async(req, res) =>{

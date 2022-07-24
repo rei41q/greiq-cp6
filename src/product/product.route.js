@@ -5,13 +5,13 @@
 
     ProductRouter.use(express.json());
 
-    ProductRouter.get("/products", ProductControler.getAllProduct);
+    ProductRouter.get("/products", ProductControler.getAllProduct); //GET ALL PRODUCT, BISA QUERY 1 PRODUCT OR LIKE: ORDER BY PRODUCT_NAME ASC
 
     // API to create new Products
 
-    ProductRouter.post("/products", ProductControler.createNewProduct);
+    ProductRouter.post("/products", ProductControler.createNewProduct); //BUAT PRODUCT, ADA NOTIF JIKA NAMA PRODUCT SUDAH ADA DENGAN YG LAIN
 
-    ProductRouter.put("/products/:id", ProductControler.updateProduct);
+    ProductRouter.put("/products/:id", ProductControler.updateProduct); //UPDATE PRODUCT, ADA NOTIF JIKA NAMA PRODUCT SUDAH ADA DENGAN YG LAIN
 
     // // API to delete Products
     // ProductRouter.delete("/products/:id", async (req, res) => {
@@ -20,6 +20,6 @@
     //   res.json(deleteProduct);
     // });
 
-    ProductRouter.delete("/products/:id", ProductControler.deleteProduct);
+    ProductRouter.delete("/products/:id", ProductControler.deleteProduct); //DELETE PRODUCT, ADA NOTIF JIKA PRODUCT MEMANG TIDAK ADA
 
     module.exports = ProductRouter;
