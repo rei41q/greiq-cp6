@@ -1,4 +1,4 @@
-    const User_GameRepo = require("./4_User_Game.repo");
+    const User_GameRepo = require("./4_user_Game.repo");
     const dataNull = "";
 
     const getAllUser_Games = async (q) => {
@@ -8,7 +8,7 @@
         if (adaQuery != dataNull) return await User_GameRepo.getUser_GameByQuery(q);
         else return "User_Game tidak ada";
       } else {
-        return await User_GameRepo.getAllUser_Games();
+        return await User_GameRepo.getAllUser_games();
       }
     };
 

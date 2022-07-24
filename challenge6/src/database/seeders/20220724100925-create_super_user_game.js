@@ -11,7 +11,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-     await queryInterface.bulkInsert("Users_Game", [
+     await queryInterface.bulkInsert("User_games", [
 
       {
       
@@ -34,6 +34,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-     await queryInterface.bulkDelete('Users_Game', null, {});
+     await queryInterface.bulkDelete('User_games', null, {});
   }
 };

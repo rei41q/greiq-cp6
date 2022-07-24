@@ -1,35 +1,35 @@
-    const { User_Game } = require("../database/models");
-    const { Op, where } = require("sequelize");
-    // cari semua User_Game
+    const { User_game } = require("../database/models");
+    const { Op } = require("sequelize");
+    // cari semua data pada table User_game
 
-    const getAllUser_Games = async () => {
-      return await User_Game.findAll({
+    const getAllUser_games = async () => {
+      return await User_game.findAll({
         order: [
           // Will escape title and validate DESC against a list of valid direction parameters
-          ["User_Game_name", "ASC"],
+          ["username", "ASC"],
         ],
       });
     };
 
-    const getUser_GameByQuery = async (q) => {
-      return await User_Game.findAll({
+    const getuser_gameByQuery = async (q) => {
+      return await User_game.findAll({
         where: {
-          User_Game_name: {
+          username: {
             [Op.substring]: q,
           },
         },
       });
     };
-    // bikin User_Game baru
-    const createNewUser_Game = async ({username,password}) => {
-      return await User_Game.create({
+    // bikin User_game baru
+    const createNewUser_game = async ({username,password}) => {
+      return await User_game.create({
         username:username,
         password:password
       });
     };
 
-    // cari User_Game berdasar User_Game_namenya
-    const getUser_GameByUser_Game_name = async (username) => {
+    // cari User_game berdasar User_game_namenya
+    const getUser_gameByUser_game_name = async (username) => {
       return await username.findOne({
         where: { username: username },
       });
@@ -43,12 +43,12 @@
       });
     };
 
-    const updateUser_Game = async ({
+    const updateUser_game = async ({
       id,
       username,
       password
     }) => {
-      return await User_Game.update(
+      return await User_game.update(
         {
           username,
           password
@@ -61,14 +61,14 @@
       );
     };
 
-    // // delete User_Game dari database
-    // const deleteUser_Game = async (User_GameId) => {
-    //   return await User_Game.destroy({
-    //     where: { id: User_GameId },
+    // // delete User_game dari database
+    // const deleteUser_game = async (User_gameId) => {
+    //   return await User_game.destroy({
+    //     where: { id: User_gameId },
     //   });
     // };
 
-    const deleteRepoUser_Game = async (id) => {
+    const deleteRepoUser_game = async (id) => {
       return await username.destroy({
         where: {
           id: id
@@ -76,14 +76,14 @@
       });
     };
 
-    const User_GameRepo = {
-      getAllUser_Games,
-      getUser_GameByQuery,
-      createNewUser_Game,
-      getUser_GameByUser_Game_name,
-      updateUser_Game,
-      deleteRepoUser_Game,
+    const User_gameRepo = {
+      getAllUser_games,
+      getuser_gameByQuery,
+      createNewUser_game,
+      getUser_gameByUser_game_name,
+      updateUser_game,
+      deleteRepoUser_game,
       cekDataId,
     };
 
-    module.exports = User_GameRepo;
+    module.exports = User_gameRepo;
