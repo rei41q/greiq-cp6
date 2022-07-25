@@ -58,7 +58,6 @@
           deskripsi: deskripsi,
           stok: stok,
           tersedia,
-          tersedia,
         },
         {
           where: {

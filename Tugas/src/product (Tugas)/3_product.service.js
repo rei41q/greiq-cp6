@@ -35,8 +35,10 @@
       stok,
       tersedia,
     }) => {
-      const ProductExist = await ProductRepo.getProductByproduct_name(product_name);
-      if (!ProductExist) {
+      const cekId = await ProductRepo.cekDataId(id);
+      if (cekId!=dataNull) {
+        const cekDataName = await ProductRepo.getProductByproduct_name(product_name);
+        if(!cekDataName){
         await ProductRepo.updateProduct({
           id,
           product_name,
@@ -45,12 +47,13 @@
           tersedia,
         });
         return "Berhasil Update product";
-      } else {
-        const cekDataId = await ProductRepo.cekDataId(id);
-        console.log(cekDataId);
-        if (cekDataId == dataNull) {
-          return "Maaf Product yg ingin diupdate tidak tersedia";
-        } else return "Maaf Nama Product sudah ada";
+        }
+        else{
+          return "Maaf Nama Product sudah ada";
+        }
+      }
+      else{
+        return error;
       }
     };
     // const deleteProduct = async (ProductId) => {
@@ -62,11 +65,11 @@
     // };
 
     const deleteDataProduct = async (id) => {
-      if (id > 1) {
+      if (id != 1) {
         const berhasil_hapus = await ProductRepo.deleteRepoProduct(id);
         if (berhasil_hapus) return "Product berhasil dihapus";
-        else return "Product memang tidak ada";
-      } else {
+        else return error;
+      } else if(id==1) {
         return "Tidak dapat menghapus super user";
       }
     };

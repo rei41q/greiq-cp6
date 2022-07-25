@@ -12,6 +12,7 @@ module.exports = {
      */
     await Promise.all([queryInterface.addColumn("Products","tersedia",{
       type: Sequelize.BOOLEAN,
+      defaultValue: false,
     })
     ],
     [queryInterface.addColumn("Products","createdAt",{
