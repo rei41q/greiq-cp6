@@ -1,18 +1,25 @@
   const User_Game_Service = require("./3_user_game.service");
-
   const getAllUser_game = async (req, res) => {
-    const { q } = req.query;
+    try {
+      const { q } = req.query;
     const User_Games = await User_Game_Service.getAllUser_Games(q);
-    res.status(200).json(User_Games);
+    return res.status(200).json(User_Games);
+    } catch (error) {
+      return res.status(500).json("Something went wrong. Please try again later");
+    }
   };
 
   const createNewUser_game = async (req, res) => {
-    const { username, password } = req.body;
-    const newUser_Game = await User_Game_Service.createNewUser_Game({
-      username,
-      password,
-    });
-    return res.status(200).json(newUser_Game);
+    try {
+      const { username, password } = req.body;
+      const newUser_Game = await User_Game_Service.createNewUser_Game({
+        username,
+        password,
+      });
+      return res.status(200).json(newUser_Game);
+    } catch (error) {
+      return res.status(500).json("Something went wrong. Please try again later");
+    }
   };
 
   const updateUser_game = async (req, res) => {

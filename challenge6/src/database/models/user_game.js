@@ -9,11 +9,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User_game.hasOne(models.User_game_biodata && models.User_game_history, { 
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+        foreignKey: {
+          type: DataTypes.UUID,
+          allowNull: false
+        }
+      });
     }
   }
   User_game.init({
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
+    username: DataTypes.STRING(50),
+    password: DataTypes.STRING(50),
   }, {
     sequelize,
     modelName: 'User_game',
