@@ -1,8 +1,10 @@
-{
+require("dotenv").config();
+
+const config = {
   "development": {
-    "username": "usergame",
-    "password": "12345678",
-    "database": "usergame",
+    "username": process.env.DB_USER,
+    "password": process.env.DB_PASSWORD,
+    "database": process.env.DB_NAME,
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
@@ -21,3 +23,5 @@
     "dialect": "mysql"
   }
 }
+
+module.exports = config;

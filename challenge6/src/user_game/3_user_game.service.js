@@ -47,13 +47,14 @@
         // console.log(cekId, "Username", IsNullOrWhiteSpace(username), " pass ", IsNullOrWhiteSpace(password))
       if (cekId && (IsNullOrWhiteSpace(username)==false || IsNullOrWhiteSpace(password)==false)) {
         const userExist = await User_GameRepo.getUser_ByUser_game_name(username);
-        if(!userExist ){
+        if(!userExist && IsNullOrWhiteSpace(password)==false ){
   
           if(IsNullOrWhiteSpace(username) == true){
 
             const valueusername = await User_GameRepo.getSatuUsername(id);
             username = valueusername.username;
             UpdatePasswordsaja = true;
+
           }
         await User_GameRepo.updateUser_game({
           id,
@@ -66,7 +67,8 @@
         return "Berhasil diupdate ";
       }
       else{
-      return "Maaf Nama User_Game sudah ada";
+        if(IsNullOrWhiteSpace(password)==true) return "Password tidak boleh kosong"
+        else return "Maaf Nama User_Game sudah ada";
       }
       } else {
           return error;
