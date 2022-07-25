@@ -1,6 +1,14 @@
     const User_GameRepo = require("./4_user_Game.repo");
 
+  //---------------------------------  
+  // const KetUser = "user tidak ada";
+  // const KetPass = "password tidak boleh kosong "
+  // const KetID = "Id tidak ada"
+  // const errormessage = {KetUser,KetPass,KetID}
+  //----------------------------------
+
     //FUNCTION CEK NULL OR WHITE SPACE
+    
     const IsNullOrWhiteSpace = (value) => {
 
       if (value== null) return true;
@@ -47,7 +55,7 @@
         // console.log(cekId, "Username", IsNullOrWhiteSpace(username), " pass ", IsNullOrWhiteSpace(password))
       if (cekId && (IsNullOrWhiteSpace(username)==false || IsNullOrWhiteSpace(password)==false)) {
         const userExist = await User_GameRepo.getUser_ByUser_game_name(username);
-        if(!userExist && IsNullOrWhiteSpace(password)==false ){
+        if(!userExist && IsNullOrWhiteSpace(password) ==false ){
   
           if(IsNullOrWhiteSpace(username) == true){
 
