@@ -1,7 +1,14 @@
     const User_gameRepo = require("./4_user_Game.repo");
     const User_GameRepo = require("./4_user_Game.repo");
-    const dataNull = "";
+  
+    //FUNCTION CEK NULL OR WHITE SPACE
+    const IsNullOrWhiteSpace = (value) => {
 
+      if (value== null) return true;
+  
+      return value.replace(/\s/g, '').length == 0;
+    }
+  
           // logika bisnis
 
     const getAllUser_Games = async (q) => {
@@ -17,32 +24,37 @@
 
     const createNewUser_Game = async ({ username, password }) => {
       const User_GameExist = await User_GameRepo.getUser_ByUser_game_name(username);
-      if (!User_GameExist && username!=dataNull) {
+      
+      if (!User_GameExist && IsNullOrWhiteSpace(username)!=true && IsNullOrWhiteSpace(password)!=true) {
+        
         await User_GameRepo.createNewUser_game({ username, password });
         return "Berhasil Membuat User_Game";
-      } else if(username==dataNull){
-        return "Username tidak boleh kosong";
+      } else if(IsNullOrWhiteSpace(username)!=false || IsNullOrWhiteSpace(password)!=false ){
+        return error;
       } else{
         return "Maaf nama User_Game sudah ada";
       }
     };
-
-    const updateUser_Game = async ({ id, username, password }) => {
-      const User_GameExist = await User_GameRepo.getUser_ByUser_game_name(username);
-      if (!User_GameExist) {
+    
+    const updateUser_Game = async ({
+       id, username, password }) => {
+      const cekDataId = await User_GameRepo.cekDataId(id);
+      if (cekDataId!="" && IsNullOrWhiteSpace(username)!=true && IsNullOrWhiteSpace(password)!=true) {
+        const userExist = await User_GameRepo.getUser_ByUser_game_name(username);
+        if(!userExist){
         await User_gameRepo.updateUser_game({
           id,
           username,
           password,
         });
         return "Berhasil Update User_Game";
-      } else {
-        const cekDataId = await User_GameRepo.cekDataId(id);
-        console.log(cekDataId);
-        if (cekDataId == dataNull) {
-          return "Maaf User_Game yg ingin diupdate tidak tersedia";
-        } else return "Maaf Nama User_Game sudah ada";
       }
+      else{
+      return "Maaf Nama User_Game sudah ada";
+      }
+      } else {
+          return error;
+        } 
     };
 
     const deleteDataUser_Game = async (id) => {
