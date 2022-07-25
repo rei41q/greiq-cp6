@@ -1,6 +1,7 @@
-    const ProductRepo = require("./product.repo");
+    const ProductRepo = require("./4_product.repo");
     const dataNull = "";
 
+    //KET DATA
     const getAllProducts = async (q) => {
       // logika bisnis
       if (q) {

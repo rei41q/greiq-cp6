@@ -1,5 +1,5 @@
     const { Product } = require("../database/models");
-    const { Op, where } = require("sequelize");
+    const { Op} = require("sequelize");
     // cari semua Product
 
     const getAllProducts = async () => {
@@ -67,13 +67,6 @@
         }
       );
     };
-
-    // // delete Product dari database
-    // const deleteProduct = async (ProductId) => {
-    //   return await Product.destroy({
-    //     where: { id: ProductId },
-    //   });
-    // };
 
     const deleteRepoProduct = async (id) => {
       return await Product.destroy({
