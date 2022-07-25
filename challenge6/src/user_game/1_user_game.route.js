@@ -10,6 +10,11 @@
     // BISA QUERY 1 User_game OR LIKE: ORDER BY User_game_NAME ASC 
 
     User_Game_Router.get("/user_game", User_Game_Controler.getAllUser_game); 
+    
+    // API to get 1 User_game
+    // ---
+    // ADA NOTIF REJECTED JIKA ID USER TIDAK ADA 
+    User_Game_Router.get("/user_game/:id", User_Game_Controler.getOneUser_game); 
 
     // API to create new User_game
     // ---

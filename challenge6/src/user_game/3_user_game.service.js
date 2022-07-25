@@ -1,13 +1,14 @@
     const User_gameRepo = require("./4_user_Game.repo");
     const User_GameRepo = require("./4_user_Game.repo");
-  
+
     //FUNCTION CEK NULL OR WHITE SPACE
     const IsNullOrWhiteSpace = (value) => {
 
       if (value== null) return true;
   
-      return value.replace(/\s/g, '').length == 0;
+      return value.replace(/\s/g, '',"").length == 0;
     }
+    
   
           // logika bisnis
 
@@ -21,7 +22,11 @@
         return await User_GameRepo.getAllUser_games();
       }
     };
-
+    const getSatuData = async (id) =>{
+      const cekAdaData = await User_GameRepo.cekDataId(id);
+      if(cekAdaData){ return await User_GameRepo.cekDataId(id)}
+      else {return error}
+    }
     const createNewUser_Game = async ({ username, password }) => {
       const User_GameExist = await User_GameRepo.getUser_ByUser_game_name(username);
       
@@ -38,16 +43,28 @@
     
     const updateUser_Game = async ({
        id, username, password }) => {
-      const cekDataId = await User_GameRepo.cekDataId(id);
-      if (cekDataId!="" && IsNullOrWhiteSpace(username)!=true && IsNullOrWhiteSpace(password)!=true) {
+      let UpdatePasswordsaja = false
+      const cekId = await User_GameRepo.cekDataId(id);
+        // console.log(cekId, "Username", IsNullOrWhiteSpace(username), " pass ", IsNullOrWhiteSpace(password))
+      if (cekId && (IsNullOrWhiteSpace(username)==false || IsNullOrWhiteSpace(password)==false)) {
         const userExist = await User_GameRepo.getUser_ByUser_game_name(username);
-        if(!userExist){
+        if(!userExist ){
+  
+          if(IsNullOrWhiteSpace(username) == true){
+
+            const valueusername = await User_gameRepo.getSatuUsername(id);
+            username = valueusername.username;
+            UpdatePasswordsaja = true;
+          }
         await User_gameRepo.updateUser_game({
           id,
           username,
           password,
         });
-        return "Berhasil Update User_Game";
+        if(UpdatePasswordsaja == true)
+        return "Berhasil Update Passwordnya saja";
+        else
+        return "Berhasil diupdate ";
       }
       else{
       return "Maaf Nama User_Game sudah ada";
@@ -58,10 +75,10 @@
     };
 
     const deleteDataUser_Game = async (id) => {
-      if (id > 1) {
+      if (id != 1) {
         const berhasil_hapus = await User_GameRepo.deleteRepoUser_game(id);
         if (berhasil_hapus) return "User_Game berhasil dihapus";
-        else return "User_Game memang tidak ada";
+        else return error;
       } else {
         return "Tidak dapat menghapus super user";
       }
@@ -72,6 +89,7 @@
       createNewUser_Game,
       updateUser_Game,
       deleteDataUser_Game,
+      getSatuData,
     };
 
     module.exports = User_Gameservice;

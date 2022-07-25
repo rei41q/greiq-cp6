@@ -2,7 +2,7 @@
   
   const error400 = "Permintaan tidak valid, Silahkan Masukan value variable username dan password pada body raw JSON";
   const error500 = "Something went wrong. Please try again later"
-  const error404 = "Id tidak tersedia"
+  const error404 = "Id tidak ada"
   const errormessage = {error400,error500,error404}
 
   const getAllUser_game = async (req, res) => {
@@ -14,7 +14,16 @@
       return res.status(500).json(errormessage.error500);
     }
   };
+  const getOneUser_game = async (req, res) =>{
+    try {
+      const {id} = req.params
+      const cekSatuData = await User_Game_Service.getSatuData(id);
+      return res.status(200).json(cekSatuData)
+    } catch (error) {
+      return res.status(404).json(errormessage.error404)
+    }
 
+  }
   const createNewUser_game = async (req, res) => {
     try {
       const { username, password } = req.body;
@@ -45,12 +54,18 @@
    
   };
   const deleteUser_game = async (req, res) => {
-    const { id } = req.params;
-    const deleteUser_GameId = await User_Game_Service.deleteDataUser_Game(id);
-    return res.status(200).json(errormessage.error404);
+    try {
+      const { id } = req.params;
+      const deleteUser_GameId = await User_Game_Service.deleteDataUser_Game(id);
+      return res.status(200).json(deleteUser_GameId);
+    } catch (error) {
+      return res.status(404).json(errormessage.error404)
+    }
+   
   };
   const FunctionUser_GameRouter = {
     getAllUser_game,
+    getOneUser_game,
     createNewUser_game,
     updateUser_game,
     deleteUser_game,

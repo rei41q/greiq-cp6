@@ -1,5 +1,5 @@
     const { User_game } = require("../database/models");
-    const { Op } = require("sequelize");
+    const { Op, where } = require("sequelize");
     // cari semua data pada table User_game
 
     const getAllUser_games = async () => {
@@ -20,6 +20,12 @@
         },
       });
     };
+    getSatuUsername = async (id) => {
+      return await User_game.findAll({
+        attributes: ['username'],
+        where:{ id: id },
+    })
+    }
     // bikin User_game baru
     const createNewUser_game = async ({username,password}) => {
       return await User_game.create({
@@ -36,10 +42,11 @@
       })};
 
     const cekDataId = async (id) => {
-      return await User_game.findAll({
+      return await User_game.findOne({
         where: {
           id: id,
         },
+        
       });
     };
 
@@ -76,6 +83,7 @@
       getUser_ByUser_game_name,
       updateUser_game,
       deleteRepoUser_game,
+      getSatuUsername,
       cekDataId,
     };
 
