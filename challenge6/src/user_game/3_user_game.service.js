@@ -1,4 +1,3 @@
-    const User_gameRepo = require("./4_user_Game.repo");
     const User_GameRepo = require("./4_user_Game.repo");
 
     //FUNCTION CEK NULL OR WHITE SPACE
@@ -52,11 +51,11 @@
   
           if(IsNullOrWhiteSpace(username) == true){
 
-            const valueusername = await User_gameRepo.getSatuUsername(id);
+            const valueusername = await User_GameRepo.getSatuUsername(id);
             username = valueusername.username;
             UpdatePasswordsaja = true;
           }
-        await User_gameRepo.updateUser_game({
+        await User_GameRepo.updateUser_game({
           id,
           username,
           password,
