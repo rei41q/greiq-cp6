@@ -12,7 +12,7 @@
     const IsNullOrWhiteSpace = (value) => {
 
       if (value== null) return true;
-  
+      
       return value.replace(/\s/g, '',"").length == 0;
     }
     
@@ -23,7 +23,7 @@
 
       if (q) {
         const adaQuery = await User_GameRepo.getuser_gameByQuery(q);
-        if (adaQuery != dataNull) return await User_GameRepo.getuser_gameByQuery(q);
+        if (adaQuery) return await User_GameRepo.getuser_gameByQuery(q);
         else return "User_Game tidak ada";
       } else {
         return await User_GameRepo.getAllUser_games();

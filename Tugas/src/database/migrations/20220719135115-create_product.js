@@ -13,10 +13,12 @@ module.exports = {
         unique: true
       },
       deskripsi: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        defaultValue: "Tidak ada penjelasan"
       },
       stok: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        defaultValue: 0
       }
     });
   },
